@@ -33,6 +33,23 @@ int main(){
     }
 
     a2[i + 1] = a2[i] + numPointers;
-    printf("%d ", a2[i]);
+  }
+
+  for(int i = 0; i < lenB; i++){
+    b2[i] = -1;
+  }
+  for(int i = 0; i < lenA; i++){
+    int numPaths;
+    numPaths = a[i + 1] - a[i];
+      for(int j = 0; j < numPaths; j++){
+        int offset = 0;
+        while(b2[a2[b[a[i] + j]] + offset] != -1){
+          offset++;
+        }
+        b2[a2[b[a[i] + j]] + offset] = i;
+      }
+  }
+  for(int i = 0; i < lenB; i++){
+    printf("%d ", b2[i]);
   }
 }
