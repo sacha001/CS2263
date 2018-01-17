@@ -51,6 +51,7 @@ int main(){
   int i = 0;
   markVertex(uniqueVertices, lastEdge, lenA);
 
+  printf("%d ", lastEdge);
   while(scanf("%d", &edge) == 1){
     int numPaths;
     int tmp = 0;
@@ -68,8 +69,17 @@ int main(){
     }
     lastEdge = edge;
     i++;
+    printf("%d ", lastEdge);
+
   }
-  printf("%d\n", isPath);
-  printf("%d", isHamiltonian(uniqueVertices, lenA));
+  printf("is ");
+  if(isPath == 0){
+    printf("NOT ");
+  }
+  printf("a path\nand is ");
+  if(isHamiltonian(uniqueVertices, lenA) == 0){
+    printf("NOT ");
+  }
+  printf("a Hamiltonian path");
 
 }
