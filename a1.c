@@ -4,6 +4,9 @@ int main(){
   int lenA;
   int lenB;
   int num;
+  int edge;
+  int lastEdge;
+  int isPath = 1;
 
   scanf("%d", &lenA);
   int a[lenA];
@@ -21,23 +24,27 @@ int main(){
     b[i] = num;
   }
 
-  scanf("%d");
-  for(int i = 0; i < 4; i++){
-    int numPaths;
-    int lastEdge = 0;
-    int edge;
-    scanf("%d", &edge);
-    printf("%d", edge);
+  scanf("%d", &lastEdge);
+  int i = 0;
 
+  while(scanf("%d", &edge) == 1){
+    int numPaths;
+    int tmp = 0;
     numPaths = a[i + 1] - a[i];
     for(int j = 0; j < numPaths; j++){
-      if(edge == a[])
+      if(b[a[lastEdge] + j] != lenB){
+        if(b[a[lastEdge] + j] == edge){
+          tmp = 1;
+        }
+      }
     }
-    a[lastEdge]
-    //for(int j = 0; j < numPaths; j++){
-
-  //  }
+    if(tmp == 0){
+      isPath = 0;
+    }
+    lastEdge = edge;
+    i++;
   }
+  printf("%d", isPath);
 
 
 }
