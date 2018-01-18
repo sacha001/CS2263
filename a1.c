@@ -48,17 +48,17 @@ int main(){
   }
 
   scanf("%d", &lastEdge);
-  int i = 0;
   markVertex(uniqueVertices, lastEdge, lenA);
 
   printf("%d ", lastEdge);
   while(scanf("%d", &edge) == 1){
     int numPaths;
     int tmp = 0;
-    numPaths = a[i + 1] - a[i];
+    numPaths = a[lastEdge + 1] - a[lastEdge];
     for(int j = 0; j < numPaths; j++){
       if(b[a[lastEdge] + j] != lenB){
         if(b[a[lastEdge] + j] == edge){
+
           tmp = 1;
           markVertex(uniqueVertices, edge, lenA);
         }
@@ -68,7 +68,6 @@ int main(){
       isPath = 0;
     }
     lastEdge = edge;
-    i++;
     printf("%d ", lastEdge);
 
   }
