@@ -1,17 +1,27 @@
 #include <stdio.h>
 
-void markVertex(int uniqueVertices[], int edge, int len){
-  for(int i = 0; i < len; i++){
-    if(uniqueVertices[i] == edge){
-      uniqueVertices[i] = -1;
+void markVertex(int uniqueVertices[], int edge){
+    if(uniqueVertices[edge] == edge){
+      uniqueVertices[edge] = -1;
+    } else if(uniqueVertices[edge] <= -1){
+      uniqueVertices[edge] = -2;
     }
-  }
 }
 
 int isHamiltonian(int uniqueVertices[], int len){
   int result = 1;
   for(int i = 0; i < len; i++){
     if(uniqueVertices[i] != -1){
+      result = 0;
+    }
+  }
+  return result;
+}
+
+int isUniquePath(int uniqueVertices[], int len){
+  int result = 1;
+  for(int i = 0; i < len; i++){
+    if(uniqueVertices[i] == -2){
       result = 0;
     }
   }
@@ -48,7 +58,7 @@ int main(){
   }
 
   scanf("%d", &lastEdge);
-  markVertex(uniqueVertices, lastEdge, lenA);
+  markVertex(uniqueVertices, lastEdge);
 
   printf("%d ", lastEdge);
   while(scanf("%d", &edge) == 1){
@@ -58,16 +68,16 @@ int main(){
     for(int j = 0; j < numPaths; j++){
       if(b[a[lastEdge] + j] != lenB){
         if(b[a[lastEdge] + j] == edge){
-
           tmp = 1;
-          markVertex(uniqueVertices, edge, lenA);
         }
       }
     }
-    if(tmp == 0){
+    lastEdge = edge;
+    markVertex(uniqueVertices, lastEdge);
+    int unique = isUniquePath(uniqueVertices, lenA);
+    if(tmp == 0 || unique == 0){
       isPath = 0;
     }
-    lastEdge = edge;
     printf("%d ", lastEdge);
 
   }
@@ -76,9 +86,10 @@ int main(){
     printf("NOT ");
   }
   printf("a path\nand is ");
-  if(isHamiltonian(uniqueVertices, lenA) == 0){
+  if(isHamiltonian(uniqueVertices, lenA) == 0 || isPath == 0){
     printf("NOT ");
   }
-  printf("a Hamiltonian path");
-
+  printf("a Hamiltonian path\n");
+  for(int i = 0; i < lenA; i++){
+  }
 }
